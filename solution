@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<int>> intervalIntersection(vector<vector<int>>& firstList, vector<vector<int>>& secondList) {
+        vector<vector<int>> result;
+        int x = 0, y = 0;
+        int size1 = firstList.size();
+        int size2 = secondList.size();
+
+        while (x < size1 && y < size2) {
+            int maxVal = max(firstList[x][0], secondList[y][0]);
+            int minVal = min(firstList[x][1], secondList[y][1]);
+
+            if (maxVal <= minVal) {
+                result.push_back({maxVal, minVal});
+            }
+
+            if (firstList[x][1] < secondList[y][1]) {
+                x++;                                                   //time complexity=o(size1.size2)
+            } else {
+                y++;
+            }
+        }
+
+        return result;
+    }
+};
